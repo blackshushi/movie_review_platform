@@ -1,0 +1,33 @@
+%h3
+  = link_to "All Movies", movies_path
+
+%h2
+  = @movie.title
+  = "(#{@movie.average_rating})"
+
+%p
+  = @movie.description
+  %br
+  Year:
+  = @movie.year
+  %br
+  Director:
+  = @movie.director.name
+  %br
+  Actors:
+  = @movie.actors.map(&:name).uniq.join(", ")
+
+
+%table
+  %head
+    %tr
+      %th Rating
+      %th User
+      %th Review
+
+  %tbody
+    - @movie.reviews.each do |review|
+      %tr
+        %td= review.rating
+        %td= review.user.name
+        %td= review.comment
